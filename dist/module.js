@@ -2507,7 +2507,19 @@ function (_super) {
   __extends(ATBEditor, _super);
 
   function ATBEditor() {
-    return _super !== null && _super.apply(this, arguments) || this;
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.onUpdatePanel = function () {
+      console.log(_this.props); // this.props.onOptionsChange({ this.props.options, columns: this.options.columns });
+    };
+
+    _this.onFeedUrlChange = function (_a) {
+      var target = _a.target;
+      console.log(target.value);
+      _this.props.options['columns'] = target.value;
+    };
+
+    return _this;
   }
 
   ATBEditor.prototype.render = function () {
@@ -2521,10 +2533,12 @@ function (_super) {
     }, _react2.default.createElement("h5", {
       className: "section-heading"
     }, "Display"), _react2.default.createElement(_ui.FormField, {
-      label: "Columns-test1",
+      label: "Columns",
       labelWidth: 8,
       inputWidth: 12,
-      value: columns
+      value: columns,
+      onChange: this.onFeedUrlChange,
+      onBlur: this.onUpdatePanel
     }), _react2.default.createElement(_ui.FormField, {
       label: "Rows",
       labelWidth: 8,
@@ -2584,7 +2598,6 @@ function transform(rows, fields) {
     return x[yfield_location];
   }));
 
-  console.log(rows[0][3]);
   var newRows = possibleRows.map(function (row) {
     var newRow = PossibleColumns.map(function (col) {
       var items = rows.filter(function (f) {

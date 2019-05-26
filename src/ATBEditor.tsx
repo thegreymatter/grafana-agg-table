@@ -2,49 +2,59 @@
 import _ from 'lodash';
 import React, { PureComponent } from 'react';
 
-
 export interface Options {
     value: string;
     rows: string;
     columns: string;
     threshold: string;
-    thresholds:any;
-  }
+    thresholds: any;
+}
 
-// Types
+// Types 
 import { PanelEditorProps } from '@grafana/ui';
-import {  FormField } from '@grafana/ui';
+import { FormField } from '@grafana/ui';
 
-export class ATBEditor extends PureComponent<PanelEditorProps<Options>> {
+export class ATBEditor extends PureComponent <PanelEditorProps<Options>> {
+   
+    onUpdatePanel = () => {
+        console.log(this.props);
+        // this.props.onOptionsChange({ this.props.options, columns: this.options.columns });
+    }
 
+    onFeedUrlChange = ({ target }) => {
+        console.log(target.value);
+        this.props.options['columns'] =  target.value;
+    };
 
-  render() {
-    const { rows, columns,value, threshold } = this.props.options;
-    return (
-      <div>
+    render() {
+        const { rows, columns, value, threshold } = this.props.options;
+        return (
+            <div>
 
           <div className="section gf-form-group">
           <h5 className="section-heading">Display</h5>
        
           <FormField
-            label="Columns-test1"
+            label="Columns"
             labelWidth={8}
             inputWidth={12}
             value={columns}
+            onChange={this.onFeedUrlChange}
+            onBlur={this.onUpdatePanel}            
           />
-                    <FormField
+          <FormField
             label="Rows"
             labelWidth={8}
             inputWidth={12}
             value={rows}
           />
-                    <FormField
+          <FormField
             label="Value"
             labelWidth={8}
             inputWidth={12}
             value={value}
           />
-                              <FormField
+          <FormField
             label="Threshold"
             labelWidth={8}
             inputWidth={12}
@@ -52,6 +62,6 @@ export class ATBEditor extends PureComponent<PanelEditorProps<Options>> {
           />
         </div>
       </div>
-    );
-  }
+        );
+    }
 }

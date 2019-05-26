@@ -5,8 +5,7 @@ export function transform(rows: Array<Array<any>>, fields:Array<any>) {
      let yfield_location = 2;
      let valfield_location = 3;
      let possibleRows = _.uniq(rows.map(x => x[xfield_location]));
-     let PossibleColumns = _.uniq(rows.map(x => x[yfield_location]));
-     console.log(rows[0][3]);
+     let PossibleColumns = _.uniq(rows.map(x => x[yfield_location]));     
      let newRows =  possibleRows.map(row => {
           let newRow = PossibleColumns.map(col => {
                let items = rows.filter(f => f[xfield_location] == row && f[yfield_location] == col)
