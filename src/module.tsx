@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PanelProps, ReactPanelPlugin } from '@grafana/ui';
+import { PanelProps, PanelPlugin } from '@grafana/ui';
 import { ShekerEditor } from "./shekerEditor"
 import {transform} from "./aggregationTransformer"
 
@@ -49,4 +49,5 @@ export class MyPanel extends Component<dProps> {
   }
 }
 
-export const reactPanel = new ReactPanelPlugin(MyPanel).setEditor(ShekerEditor);
+export const plugin = new PanelPlugin(MyPanel);
+plugin.setEditor(ShekerEditor);
