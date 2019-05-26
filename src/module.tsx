@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PanelProps, PanelPlugin } from '@grafana/ui';
-import { defaults,ATBEditor } from "./ATBEditor";
+import { defaults, ATBEditor } from "./ATBEditor";
 import {transform} from "./aggregationTransformer";
 import './style/module.css';
 
@@ -8,7 +8,6 @@ interface dProps extends PanelProps {
   data: any
 }
  
-//import Table from '@grafana/ui/components/Table/Table';
 export class MyPanel extends Component<dProps> {
 
   constructor(props: dProps) {
@@ -16,11 +15,8 @@ export class MyPanel extends Component<dProps> {
   }
 
   render() { 
-    const { data } = this.props;  
-    console.log(this.props.options);  
-    const {rows,fields} = transform(data['series'][0].rows,data['series'][0].fields)
-    console.log(rows);
-    console.log(fields);
+    const { data } = this.props;    
+    const {rows,fields} = transform(data['series'][0].rows,data['series'][0].fields, this.props.options)
     return (
       <div>
         <table className={`table-wrapper`}>        
@@ -38,7 +34,7 @@ export class MyPanel extends Component<dProps> {
             return <tr className={`table-body-row`}>
               {row.map(element => {                
                 let nivz = element > 5 ? 'green' : 'red';
-                return <td className={`row-${row[0].replace(' ', '-')} ${nivz}`}>{element}</td>
+                return <td className={`row ${nivz}`}>{element}</td>
               })}
             </tr>
           })}
@@ -49,6 +45,4 @@ export class MyPanel extends Component<dProps> {
   }
 }
 
-export const plugin = new PanelPlugin(MyPanel);
-plugin.setEditor(ATBEditor);
-plugin.setDefaults(defaults);
+export const plugin = new PanelPlugin(MyPanel).setDefaults(defaults).setEditor(ATBEditor);

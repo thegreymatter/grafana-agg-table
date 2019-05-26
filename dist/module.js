@@ -2518,9 +2518,9 @@ var __assign = undefined && undefined.__assign || function () {
 };
 
 var defaults = exports.defaults = {
-  value: '',
-  rows: '',
-  columns: '',
+  value: '3',
+  rows: '2',
+  columns: '1',
   threshold: '',
   thresholds: ''
 };
@@ -2533,18 +2533,40 @@ function (_super) {
   function ATBEditor() {
     var _this = _super !== null && _super.apply(this, arguments) || this;
 
-    _this.onUpdatePanel = function () {
-      console.log(_this.props); // this.props.onOptionsChange({ this.props.options, columns: this.options.columns });
-    };
-
-    _this.onFeedUrlChange = function (_a) {
+    _this.onColumnsChange = function (_a) {
       var target = _a.target;
-      console.log(target.value);
+      _this.props.options['columns'] = target.value;
 
       _this.props.onOptionsChange(__assign({}, _this.props.options, {
         columns: target.value
-      })); //  this.props.options['columns'] =  target.value 
+      }));
+    };
 
+    _this.onRowsChange = function (_a) {
+      var target = _a.target;
+      _this.props.options['rows'] = target.value;
+
+      _this.props.onOptionsChange(__assign({}, _this.props.options, {
+        rows: target.value
+      }));
+    };
+
+    _this.onValueChange = function (_a) {
+      var target = _a.target;
+      _this.props.options['value'] = target.value;
+
+      _this.props.onOptionsChange(__assign({}, _this.props.options, {
+        value: target.value
+      }));
+    };
+
+    _this.onThresholdChange = function (_a) {
+      var target = _a.target;
+      _this.props.options['threshold'] = target.value;
+
+      _this.props.onOptionsChange(__assign({}, _this.props.options, {
+        threshold: target.value
+      }));
     };
 
     return _this;
@@ -2565,23 +2587,25 @@ function (_super) {
       labelWidth: 8,
       inputWidth: 12,
       value: columns,
-      onChange: this.onFeedUrlChange,
-      onBlur: this.onUpdatePanel
+      onChange: this.onColumnsChange
     }), _react2.default.createElement(_ui.FormField, {
       label: "Rows",
       labelWidth: 8,
       inputWidth: 12,
-      value: rows
+      value: rows,
+      onChange: this.onRowsChange
     }), _react2.default.createElement(_ui.FormField, {
       label: "Value",
       labelWidth: 8,
       inputWidth: 12,
-      value: value
+      value: value,
+      onChange: this.onValueChange
     }), _react2.default.createElement(_ui.FormField, {
       label: "Threshold",
       labelWidth: 8,
       inputWidth: 12,
-      value: threshold
+      value: threshold,
+      onChange: this.onThresholdChange
     })));
   };
 
@@ -2613,10 +2637,11 @@ var _underscore2 = _interopRequireDefault(_underscore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function transform(rows, fields) {
-  var xfield_location = 1;
-  var yfield_location = 2;
-  var valfield_location = 3;
+function transform(rows, fields, options) {
+  console.log(options);
+  var xfield_location = options.columns;
+  var yfield_location = options.rows;
+  var valfield_location = options.value;
 
   var possibleRows = _underscore2.default.uniq(rows.map(function (x) {
     return x[xfield_location];
@@ -2711,7 +2736,6 @@ var __extends = undefined && undefined.__extends || function () {
   };
 }();
 
-//import Table from '@grafana/ui/components/Table/Table';
 var MyPanel =
 /** @class */
 function (_super) {
@@ -2723,14 +2747,11 @@ function (_super) {
 
   MyPanel.prototype.render = function () {
     var data = this.props.data;
-    console.log(this.props.options);
 
-    var _a = (0, _aggregationTransformer.transform)(data['series'][0].rows, data['series'][0].fields),
+    var _a = (0, _aggregationTransformer.transform)(data['series'][0].rows, data['series'][0].fields, this.props.options),
         rows = _a.rows,
         fields = _a.fields;
 
-    console.log(rows);
-    console.log(fields);
     return _react2.default.createElement("div", null, _react2.default.createElement("table", {
       className: "table-wrapper"
     }, _react2.default.createElement("thead", {
@@ -2747,7 +2768,7 @@ function (_super) {
       }, row.map(function (element) {
         var nivz = element > 5 ? 'green' : 'red';
         return _react2.default.createElement("td", {
-          className: "row-" + row[0].replace(' ', '-') + " " + nivz
+          className: "row " + nivz
         }, element);
       }));
     }))));
@@ -2757,9 +2778,7 @@ function (_super) {
 }(_react.Component);
 
 exports.MyPanel = MyPanel;
-var plugin = exports.plugin = new _ui.PanelPlugin(MyPanel);
-plugin.setEditor(_ATBEditor.ATBEditor);
-plugin.setDefaults(_ATBEditor.defaults);
+var plugin = exports.plugin = new _ui.PanelPlugin(MyPanel).setDefaults(_ATBEditor.defaults).setEditor(_ATBEditor.ATBEditor);
 
 /***/ }),
 

@@ -11,9 +11,9 @@ export interface Options {
 }
 
 export const defaults: Options = {
-    value: '',
-    rows: '',
-    columns: '',
+    value: '3',
+    rows: '2',
+    columns: '1',
     threshold: '',
     thresholds: ''
 }
@@ -23,18 +23,23 @@ import { PanelEditorProps } from '@grafana/ui';
 import { FormField } from '@grafana/ui';
 
 export class ATBEditor extends PureComponent <PanelEditorProps<Options>> {
-   
-    onUpdatePanel = () => {
-        console.log(this.props);
-        // this.props.onOptionsChange({ this.props.options, columns: this.options.columns });
-    }
-
-    onFeedUrlChange = ({ target }) => {
-        console.log(target.value);
+      
+    onColumnsChange = ({ target }) => {        
+        this.props.options['columns'] =  target.value;
         this.props.onOptionsChange({ ...this.props.options, columns: target.value });
-      //  this.props.options['columns'] =  target.value 
     };
-
+    onRowsChange = ({ target }) => {        
+        this.props.options['rows'] =  target.value;
+        this.props.onOptionsChange({ ...this.props.options, rows: target.value });
+    };
+    onValueChange = ({ target }) => {        
+        this.props.options['value'] =  target.value;
+        this.props.onOptionsChange({ ...this.props.options, value: target.value });
+    };
+    onThresholdChange = ({ target }) => {        
+        this.props.options['threshold'] =  target.value;
+        this.props.onOptionsChange({ ...this.props.options, threshold: target.value });
+    };
     render() {
         const { rows, columns, value, threshold } = this.props.options;
         return (
@@ -48,26 +53,28 @@ export class ATBEditor extends PureComponent <PanelEditorProps<Options>> {
             labelWidth={8}
             inputWidth={12}
             value={columns}
-            onChange={this.onFeedUrlChange}
-            onBlur={this.onUpdatePanel}            
+            onChange={this.onColumnsChange}                   
           />
           <FormField
             label="Rows"
             labelWidth={8}
             inputWidth={12}
             value={rows}
+            onChange={this.onRowsChange}
           />
           <FormField
             label="Value"
             labelWidth={8}
             inputWidth={12}
             value={value}
+            onChange={this.onValueChange}
           />
           <FormField
             label="Threshold"
             labelWidth={8}
             inputWidth={12}
             value={threshold}
+            onChange={this.onThresholdChange}
           />
         </div>
       </div>
