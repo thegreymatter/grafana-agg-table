@@ -9,14 +9,13 @@ export interface Options {
     columns: string;
     threshold: string;
     thresholds:any;
-
   }
 
 // Types
 import { PanelEditorProps } from '@grafana/ui';
 import {  FormField } from '@grafana/ui';
 
-export class ShekerEditor extends PureComponent<PanelEditorProps<Options>> {
+export class ATBEditor extends PureComponent<PanelEditorProps<Options>> {
 
 
   render() {
@@ -28,7 +27,7 @@ export class ShekerEditor extends PureComponent<PanelEditorProps<Options>> {
           <h5 className="section-heading">Display</h5>
        
           <FormField
-            label="Columns"
+            label="Columns-test1"
             labelWidth={8}
             inputWidth={12}
             value={columns}

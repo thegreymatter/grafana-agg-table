@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { PanelProps, PanelPlugin } from '@grafana/ui';
-import { ShekerEditor } from "./shekerEditor"
-import {transform} from "./aggregationTransformer"
+import { ATBEditor } from "./ATBEditor";
+import {transform} from "./aggregationTransformer";
+import './style/module.css';
 
 interface dProps extends PanelProps {
   data: any
 }
-
+ 
 //import Table from '@grafana/ui/components/Table/Table';
 export class MyPanel extends Component<dProps> {
 
@@ -14,40 +15,38 @@ export class MyPanel extends Component<dProps> {
     super(props);
   }
 
-  render() {
-    const { data } = this.props;
-    const {rows,fields} = transform(data[0].rows,data[0].fields)
+  render() { 
+    const { data } = this.props;    
+    const {rows,fields} = transform(data['series'][0].rows,data['series'][0].fields)
+    console.log(rows);
+    console.log(fields);
     return (
-
       <div>
-        <table style={{width:"100%"}}>
-          <thead>
-            <tr style={{fontWeight:"bold"}}>
-            {fields.map(element => {
+        <table className={`table-wrapper`}>        
+          <thead className={`table-header-wrapper`}>
+            <tr className={`table-header-row`}>
+            {fields.map(field => {
              return <th>
-                {element.name}
-
+                {field.name}
               </th>
             })}
             </tr>
           </thead>
-          <tbody>
-          {rows.map(element => {
-            return <tr>
-              {element.map(element => {
-                return <td> {element}</td>
+          <tbody className={`table-body-wrapper`}>
+          {rows.map(row => {            
+            return <tr className={`table-body-row`}>
+              {row.map(element => {                
+                let nivz = element > 5 ? 'green' : 'red';
+                return <td className={`row-${row[0].replace(' ', '-')} ${nivz}`}>{element}</td>
               })}
             </tr>
           })}
           </tbody>
         </table>
-
-
       </div>
-
     )
   }
 }
 
 export const plugin = new PanelPlugin(MyPanel);
-plugin.setEditor(ShekerEditor);
+plugin.setEditor(ATBEditor);
