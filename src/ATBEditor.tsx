@@ -10,7 +10,15 @@ export interface Options {
     thresholds: any;
 }
 
+export const defaults: Options = {
+    value: '',
+    rows: '',
+    columns: '',
+    threshold: '',
+    thresholds: ''
+}
 // Types 
+
 import { PanelEditorProps } from '@grafana/ui';
 import { FormField } from '@grafana/ui';
 
@@ -23,7 +31,8 @@ export class ATBEditor extends PureComponent <PanelEditorProps<Options>> {
 
     onFeedUrlChange = ({ target }) => {
         console.log(target.value);
-        this.props.options['columns'] =  target.value;
+        this.props.onOptionsChange({ ...this.props.options, columns: target.value });
+      //  this.props.options['columns'] =  target.value 
     };
 
     render() {

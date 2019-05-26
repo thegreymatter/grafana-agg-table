@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PanelProps, PanelPlugin } from '@grafana/ui';
-import { ATBEditor } from "./ATBEditor";
+import { defaults,ATBEditor } from "./ATBEditor";
 import {transform} from "./aggregationTransformer";
 import './style/module.css';
 
@@ -16,7 +16,8 @@ export class MyPanel extends Component<dProps> {
   }
 
   render() { 
-    const { data } = this.props;    
+    const { data } = this.props;  
+    console.log(this.props.options);  
     const {rows,fields} = transform(data['series'][0].rows,data['series'][0].fields)
     console.log(rows);
     console.log(fields);
@@ -50,3 +51,4 @@ export class MyPanel extends Component<dProps> {
 
 export const plugin = new PanelPlugin(MyPanel);
 plugin.setEditor(ATBEditor);
+plugin.setDefaults(defaults);

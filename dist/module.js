@@ -2465,7 +2465,7 @@ module.exports = function(module) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ATBEditor = undefined;
+exports.ATBEditor = exports.defaults = undefined;
 
 var _react = __webpack_require__(/*! react */ "react");
 
@@ -2501,6 +2501,30 @@ var __extends = undefined && undefined.__extends || function () {
   };
 }();
 
+var __assign = undefined && undefined.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var defaults = exports.defaults = {
+  value: '',
+  rows: '',
+  columns: '',
+  threshold: '',
+  thresholds: ''
+};
+
 var ATBEditor =
 /** @class */
 function (_super) {
@@ -2516,7 +2540,11 @@ function (_super) {
     _this.onFeedUrlChange = function (_a) {
       var target = _a.target;
       console.log(target.value);
-      _this.props.options['columns'] = target.value;
+
+      _this.props.onOptionsChange(__assign({}, _this.props.options, {
+        columns: target.value
+      })); //  this.props.options['columns'] =  target.value 
+
     };
 
     return _this;
@@ -2695,6 +2723,7 @@ function (_super) {
 
   MyPanel.prototype.render = function () {
     var data = this.props.data;
+    console.log(this.props.options);
 
     var _a = (0, _aggregationTransformer.transform)(data['series'][0].rows, data['series'][0].fields),
         rows = _a.rows,
@@ -2730,6 +2759,7 @@ function (_super) {
 exports.MyPanel = MyPanel;
 var plugin = exports.plugin = new _ui.PanelPlugin(MyPanel);
 plugin.setEditor(_ATBEditor.ATBEditor);
+plugin.setDefaults(_ATBEditor.defaults);
 
 /***/ }),
 
