@@ -98,7 +98,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}", "", {"version":3,"sources":["/Users/niv.benavi/development/ni-heartbeat-project/grafana-agg-table/src/style/module.css"],"names":[],"mappings":"AAAA;IACI,YAAY;CACf;;AAED;IACI,iBAAiB;IACjB,YAAY;IACZ,gBAAgB;CACnB;;AAED;IACI,oBAAoB;IACpB,YAAY;IACZ,gBAAgB;CACnB;;AAED;CACC,wBAAwB;CACxB;;AAED;CACC,sBAAsB;CACtB","file":"module.css","sourcesContent":["table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}"],"sourceRoot":""}]);
+exports.push([module.i, "table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}", "", {"version":3,"sources":["/Users/niv.benavi/development/ni-heartbeat-project/grafana-agg-table/src/style/module.css"],"names":[],"mappings":"AAAA;IACI,YAAY;CACf;;AAED;IACI,iBAAiB;IACjB,YAAY;IACZ,gBAAgB;CACnB;;AAED;IACI,oBAAoB;IACpB,YAAY;IACZ,gBAAgB;CACnB;;AAED;CACC,wBAAwB;CACxB;;AAED;CACC,sBAAsB;CACtB;AACD;CACC,cAAc;CACd,YAAY;CACZ,gBAAgB;CAChB,wBAAwB;CACxB,oBAAoB;CACpB","file":"module.css","sourcesContent":["table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}"],"sourceRoot":""}]);
 
 // exports
 
@@ -2747,31 +2747,38 @@ function (_super) {
 
   MyPanel.prototype.render = function () {
     var data = this.props.data;
+    console.log(data);
 
-    var _a = (0, _aggregationTransformer.transform)(data['series'][0].rows, data['series'][0].fields, this.props.options),
-        rows = _a.rows,
-        fields = _a.fields;
+    if (data['series'][0]) {
+      var _a = (0, _aggregationTransformer.transform)(data['series'][0].rows, data['series'][0].fields, this.props.options),
+          rows = _a.rows,
+          fields = _a.fields;
 
-    return _react2.default.createElement("div", null, _react2.default.createElement("table", {
-      className: "table-wrapper"
-    }, _react2.default.createElement("thead", {
-      className: "table-header-wrapper"
-    }, _react2.default.createElement("tr", {
-      className: "table-header-row"
-    }, fields.map(function (field) {
-      return _react2.default.createElement("th", null, field.name);
-    }))), _react2.default.createElement("tbody", {
-      className: "table-body-wrapper"
-    }, rows.map(function (row) {
-      return _react2.default.createElement("tr", {
-        className: "table-body-row"
-      }, row.map(function (element) {
-        var nivz = element > 5 ? 'green' : 'red';
-        return _react2.default.createElement("td", {
-          className: "row " + nivz
-        }, element);
-      }));
-    }))));
+      return _react2.default.createElement("div", null, _react2.default.createElement("table", {
+        className: "table-wrapper"
+      }, _react2.default.createElement("thead", {
+        className: "table-header-wrapper"
+      }, _react2.default.createElement("tr", {
+        className: "table-header-row"
+      }, fields.map(function (field) {
+        return _react2.default.createElement("th", null, field.name);
+      }))), _react2.default.createElement("tbody", {
+        className: "table-body-wrapper"
+      }, rows.map(function (row) {
+        return _react2.default.createElement("tr", {
+          className: "table-body-row"
+        }, row.map(function (element) {
+          var nivz = element > 5 ? 'green' : 'red';
+          return _react2.default.createElement("td", {
+            className: "t-row " + nivz
+          }, element);
+        }));
+      }))));
+    } else {
+      return _react2.default.createElement("div", {
+        className: "no-data"
+      }, "No DATA to show \uD83D\uDE1E");
+    }
   };
 
   return MyPanel;

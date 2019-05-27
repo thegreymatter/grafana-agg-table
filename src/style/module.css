@@ -21,3 +21,10 @@ tbody.table-body-wrapper {
 .red {
 	background-color: red;
 }
+.no-data{
+	display: flex;
+	flex:1 100%;
+	font-size: 40px;
+	justify-content: center;
+	align-items: center;
+}

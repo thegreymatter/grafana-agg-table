@@ -16,7 +16,9 @@ export class MyPanel extends Component<dProps> {
 
   render() { 
     const { data } = this.props;    
-    const {rows,fields} = transform(data['series'][0].rows,data['series'][0].fields, this.props.options)
+    console.log(data);
+    if (data['series'][0]){
+    const {rows,fields} = transform(data['series'][0].rows,data['series'][0].fields, this.props.options)    
     return (
       <div>
         <table className={`table-wrapper`}>        
@@ -34,14 +36,19 @@ export class MyPanel extends Component<dProps> {
             return <tr className={`table-body-row`}>
               {row.map(element => {                
                 let nivz = element > 5 ? 'green' : 'red';
-                return <td className={`row ${nivz}`}>{element}</td>
+                return <td className={`t-row ${nivz}`}>{element}</td>
               })}
             </tr>
           })}
           </tbody>
         </table>
       </div>
+    );
+  } else {
+    return (
+      <div className="no-data">No DATA to show 😞</div>
     )
+  }
   }
 }
 
