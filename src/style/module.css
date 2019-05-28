@@ -28,3 +28,26 @@ tbody.table-body-wrapper {
 	justify-content: center;
 	align-items: center;
 }
+
+
+.section.atb-settings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.section.atb-settings .section-heading {
+    font-size: 20px;
+    color: #fff;
+    text-transform: capitalize;
+    flex: 1 100%;
+}
+
+.section.atb-settings .gf-form-switch-container-react {
+    margin: 5px
+    
+}
+
+.section.atb-settings .panel-options-group {
+    margin: 5px
+}

@@ -98,7 +98,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}", "", {"version":3,"sources":["/Users/niv.benavi/development/ni-heartbeat-project/grafana-agg-table/src/style/module.css"],"names":[],"mappings":"AAAA;IACI,YAAY;CACf;;AAED;IACI,iBAAiB;IACjB,YAAY;IACZ,gBAAgB;CACnB;;AAED;IACI,oBAAoB;IACpB,YAAY;IACZ,gBAAgB;CACnB;;AAED;CACC,wBAAwB;CACxB;;AAED;CACC,sBAAsB;CACtB;AACD;CACC,cAAc;CACd,YAAY;CACZ,gBAAgB;CAChB,wBAAwB;CACxB,oBAAoB;CACpB","file":"module.css","sourcesContent":["table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}"],"sourceRoot":""}]);
+exports.push([module.i, "table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}\n\n\n.section.atb-settings {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: flex-start;\n}\n\n.section.atb-settings .section-heading {\n    font-size: 20px;\n    color: #fff;\n    text-transform: capitalize;\n    flex: 1 100%;\n}\n\n.section.atb-settings .gf-form-switch-container-react {\n    margin: 5px\n    \n}\n\n.section.atb-settings .panel-options-group {\n    margin: 5px\n}", "", {"version":3,"sources":["/Users/niv.benavi/development/ni-heartbeat-project/grafana-agg-table/src/style/module.css"],"names":[],"mappings":"AAAA;IACI,YAAY;CACf;;AAED;IACI,iBAAiB;IACjB,YAAY;IACZ,gBAAgB;CACnB;;AAED;IACI,oBAAoB;IACpB,YAAY;IACZ,gBAAgB;CACnB;;AAED;CACC,wBAAwB;CACxB;;AAED;CACC,sBAAsB;CACtB;AACD;CACC,cAAc;CACd,YAAY;CACZ,gBAAgB;CAChB,wBAAwB;CACxB,oBAAoB;CACpB;;;AAGD;IACI,cAAc;IACd,gBAAgB;IAChB,4BAA4B;CAC/B;;AAED;IACI,gBAAgB;IAChB,YAAY;IACZ,2BAA2B;IAC3B,aAAa;CAChB;;AAED;IACI,WAAW;;CAEd;;AAED;IACI,WAAW;CACd","file":"module.css","sourcesContent":["table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}\n\n\n.section.atb-settings {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: flex-start;\n}\n\n.section.atb-settings .section-heading {\n    font-size: 20px;\n    color: #fff;\n    text-transform: capitalize;\n    flex: 1 100%;\n}\n\n.section.atb-settings .gf-form-switch-container-react {\n    margin: 5px\n    \n}\n\n.section.atb-settings .panel-options-group {\n    margin: 5px\n}"],"sourceRoot":""}]);
 
 // exports
 
@@ -2522,8 +2522,9 @@ var defaults = exports.defaults = {
   rows: '2',
   columns: '1',
   threshold: '',
-  thresholds: ''
-};
+  thresholds: '',
+  showOrder: true
+}; // Types  
 
 var ATBEditor =
 /** @class */
@@ -2542,24 +2543,6 @@ function (_super) {
       }));
     };
 
-    _this.onRowsChange = function (_a) {
-      var target = _a.target;
-      _this.props.options['rows'] = target.value;
-
-      _this.props.onOptionsChange(__assign({}, _this.props.options, {
-        rows: target.value
-      }));
-    };
-
-    _this.onValueChange = function (_a) {
-      var target = _a.target;
-      _this.props.options['value'] = target.value;
-
-      _this.props.onOptionsChange(__assign({}, _this.props.options, {
-        value: target.value
-      }));
-    };
-
     _this.onThresholdChange = function (_a) {
       var target = _a.target;
       _this.props.options['threshold'] = target.value;
@@ -2569,43 +2552,38 @@ function (_super) {
       }));
     };
 
+    _this.onSwitchChange = function () {
+      _this.props.onOptionsChange(__assign({}, _this.props.options, {
+        showOrder: !_this.props.options.showOrder,
+        columns: _this.props.options.columns == '1' ? '2' : '1',
+        rows: _this.props.options.rows == '1' ? '2' : '1'
+      }));
+    };
+
+    _this.onThresholdsChanged = function (thresholds) {
+      console.log(thresholds);
+    };
+
     return _this;
   }
 
   ATBEditor.prototype.render = function () {
-    var _a = this.props.options,
-        rows = _a.rows,
-        columns = _a.columns,
-        value = _a.value,
-        threshold = _a.threshold;
+    var _this = this;
+
+    var showOrder = this.props.options.showOrder;
     return _react2.default.createElement("div", null, _react2.default.createElement("div", {
-      className: "section gf-form-group"
-    }, _react2.default.createElement("h5", {
+      className: "section atb-settings"
+    }, _react2.default.createElement("div", {
       className: "section-heading"
-    }, "Display"), _react2.default.createElement(_ui.FormField, {
-      label: "Columns",
-      labelWidth: 8,
-      inputWidth: 12,
-      value: columns,
-      onChange: this.onColumnsChange
-    }), _react2.default.createElement(_ui.FormField, {
-      label: "Rows",
-      labelWidth: 8,
-      inputWidth: 12,
-      value: rows,
-      onChange: this.onRowsChange
-    }), _react2.default.createElement(_ui.FormField, {
-      label: "Value",
-      labelWidth: 8,
-      inputWidth: 12,
-      value: value,
-      onChange: this.onValueChange
-    }), _react2.default.createElement(_ui.FormField, {
-      label: "Threshold",
-      labelWidth: 8,
-      inputWidth: 12,
-      value: threshold,
-      onChange: this.onThresholdChange
+    }, "Heartbeat settings"), _react2.default.createElement(_ui.Switch, {
+      label: "showOrder",
+      checked: showOrder,
+      onChange: this.onSwitchChange
+    }), _react2.default.createElement(_ui.ThresholdsEditor, {
+      thresholds: this.props.options.thresholds,
+      onChange: function onChange(thresholds) {
+        return _this.onThresholdsChanged(thresholds);
+      }
     })));
   };
 

@@ -8,6 +8,7 @@ export interface Options {
     columns: string;
     threshold: string;
     thresholds: any;
+    showOrder: boolean;
 }
 
 export const defaults: Options = {
@@ -15,69 +16,59 @@ export const defaults: Options = {
     rows: '2',
     columns: '1',
     threshold: '',
-    thresholds: ''
+    thresholds: '',
+    showOrder: true,
 }
-// Types 
 
-import { PanelEditorProps } from '@grafana/ui';
-import { FormField } from '@grafana/ui';
+// Types  
+import {
+    PanelEditorProps,
+    Threshold,
+    ThresholdsEditor,
+    Switch,
+} from '@grafana/ui';
 
-export class ATBEditor extends PureComponent <PanelEditorProps<Options>> {
-      
-    onColumnsChange = ({ target }) => {        
-        this.props.options['columns'] =  target.value;
+export class ATBEditor extends PureComponent < PanelEditorProps < Options >> {
+    
+    onColumnsChange = ({ target }) => {
+        this.props.options['columns'] = target.value;
         this.props.onOptionsChange({ ...this.props.options, columns: target.value });
     };
-    onRowsChange = ({ target }) => {        
-        this.props.options['rows'] =  target.value;
-        this.props.onOptionsChange({ ...this.props.options, rows: target.value });
-    };
-    onValueChange = ({ target }) => {        
-        this.props.options['value'] =  target.value;
-        this.props.onOptionsChange({ ...this.props.options, value: target.value });
-    };
-    onThresholdChange = ({ target }) => {        
-        this.props.options['threshold'] =  target.value;
+    
+    onThresholdChange = ({ target }) => {
+        this.props.options['threshold'] = target.value;
         this.props.onOptionsChange({ ...this.props.options, threshold: target.value });
     };
-    render() {
-        const { rows, columns, value, threshold } = this.props.options;
-        return (
-            <div>
+    onSwitchChange = () => {                
+        this.props.onOptionsChange({ 
+            ...this.props.options, 
+            showOrder: !this.props.options.showOrder,
+            columns: (this.props.options.columns=='1') ?'2' : '1',
+            rows: (this.props.options.rows=='1') ?'2' : '1'
+        });        
+    };   
 
-          <div className="section gf-form-group">
-          <h5 className="section-heading">Display</h5>
-       
-          <FormField
-            label="Columns"
-            labelWidth={8}
-            inputWidth={12}
-            value={columns}
-            onChange={this.onColumnsChange}                   
-          />
-          <FormField
-            label="Rows"
-            labelWidth={8}
-            inputWidth={12}
-            value={rows}
-            onChange={this.onRowsChange}
-          />
-          <FormField
-            label="Value"
-            labelWidth={8}
-            inputWidth={12}
-            value={value}
-            onChange={this.onValueChange}
-          />
-          <FormField
-            label="Threshold"
-            labelWidth={8}
-            inputWidth={12}
-            value={threshold}
-            onChange={this.onThresholdChange}
-          />
+    onThresholdsChanged = (thresholds: Threshold[]) => {
+        console.log(thresholds);
+    };
+
+    render() {
+        const { showOrder } = this.props.options;
+        return (
+        <div>
+            <div className="section atb-settings">
+                <div className="section-heading">Heartbeat settings</div>
+                <Switch
+                    label="showOrder"
+                    checked = {showOrder}
+                    onChange={this.onSwitchChange}           
+                />      
+                 <ThresholdsEditor
+                    thresholds={this.props.options.thresholds}
+                    onChange={thresholds => this.onThresholdsChanged(thresholds)}
+                />
+            </div>
         </div>
-      </div>
         );
     }
 }
