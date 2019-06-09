@@ -1,24 +1,7 @@
 //// Libraries
 import _ from 'lodash';
 import React, { PureComponent } from 'react';
-
-export interface Options {
-    value: string;
-    rows: string;
-    columns: string;
-    threshold: string;
-    thresholds: any;
-    showOrder: boolean;
-}
-
-export const defaults: Options = {
-    value: '3',
-    rows: '2',
-    columns: '1',
-    threshold: '',
-    thresholds: '',
-    showOrder: true,
-}
+import {Options} from './types' ;
 
 // Types  
 import {
@@ -26,9 +9,10 @@ import {
     Threshold,
     ThresholdsEditor,
     Switch,
+
 } from '@grafana/ui';
 
-export class ATBEditor extends PureComponent < PanelEditorProps < Options >> {
+export class statusTableEditor extends PureComponent < PanelEditorProps < Options >> {
     
     onColumnsChange = ({ target }) => {
         this.props.options['columns'] = target.value;

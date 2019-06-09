@@ -5,15 +5,17 @@ export function transform(rows: Array<Array<any>>, fields:Array<any>, options) {
      let xfield_location = options.columns;
      let yfield_location = options.rows;
      let valfield_location = options.value;
+     let color_location = options.color;
+     let trend_location = options.trend;
      let possibleRows = _.uniq(rows.map(x => x[xfield_location]));
      let PossibleColumns = _.uniq(rows.map(x => x[yfield_location]));     
      let newRows =  possibleRows.map(row => {
           let newRow = PossibleColumns.map(col => {
                let items = rows.filter(f => f[xfield_location] == row && f[yfield_location] == col)
                if (items.length == 0)
-                    return "";
+                    return {};
                else
-                    return items[0][valfield_location];
+                    return {value:items[0][valfield_location],color:items[0][color_location],trend:items[0][trend_location]};
           });
           newRow.unshift(row);
           return newRow;
