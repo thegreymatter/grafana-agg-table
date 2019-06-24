@@ -19509,7 +19509,9 @@ var statusCellBuilder = exports.statusCellBuilder = function statusCellBuilder(c
   var props = cell.props,
       value = cell.value,
       className = cell.className,
-      column = cell.column;
+      column = cell.column,
+      showorder = cell.showorder,
+      row = cell.row;
   var style = props.style;
 
   var getTrend = function getTrend(element) {
@@ -19533,7 +19535,7 @@ var statusCellBuilder = exports.statusCellBuilder = function statusCellBuilder(c
   };
 
   var getValue = function getValue(value) {
-    var formatRule = formatDict[column.name.toLowerCase()]; // console.log({'formatRule':formatRule, 'name': column.name});
+    var formatRule = showorder ? formatDict[column.name.toLowerCase()] : formatDict[row[0].toLowerCase()]; // console.log({'formatRule':formatRule, 'name': column.name});
     // TODO:
     // add solution for when swiching order. 
 
@@ -19696,7 +19698,6 @@ function (_super) {
 
       return _react2.default.createElement("div", {
         className: "gf-table-header",
-        "data-attr": col.name,
         style: style,
         onClick: function onClick() {
           return _this.onCellClick(rowIndex, columnIndex);
@@ -19719,7 +19720,9 @@ function (_super) {
           row = _a.row,
           column = _a.column;
 
-      var data = _this.props.data;
+      var _b = _this.props,
+          data = _b.data,
+          showOrder = _b.showOrder;
       var isHeader = row < 0;
       var rowData = isHeader ? data.fields : data.rows[row];
       var value = rowData ? rowData[column] : '';
@@ -19734,7 +19737,7 @@ function (_super) {
         value: value,
         row: rowData,
         column: data.fields[column],
-        //  table: this,
+        showorder: showOrder,
         props: props
       }));
     };
@@ -19788,7 +19791,7 @@ function (_super) {
     var columnCount = data.fields.length;
     var rowCount = data.rows.length + (showHeader ? 1 : 0);
     var fixedColumnCount = Math.min(fixedColumns, columnCount);
-    var fixedRowCount = showHeader && fixedHeader ? 1 : 0; // Called after sort or the data changes
+    var fixedRowCount = showHeader && fixedHeader ? 1 : 0; // Called after sort or the data changes    
 
     var scroll = this.scrollToTop ? 1 : -1;
     var scrollToRow = rotate ? -1 : scroll;

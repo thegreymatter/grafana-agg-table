@@ -4,9 +4,8 @@ import numeral from "numeral";
 
 /** Simplest cell that just spits out the value */
 export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOptions)  => {
-    const { props, value, className, column } = cell;
-    const { style } = props;
-        
+    const { props, value, className, column, showorder, row } = cell;
+    const { style } = props;     
     const getTrend =function(element:any){
       if(element.trend===undefined||element.trend===null)
          return (<span></span>);
@@ -48,8 +47,8 @@ export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOption
       stability:'0%',
       traffic:'0 a',
     }
-    const getValue = function(value){ //get coulmn type, and apply correct format.  
-    let formatRule = formatDict[column.name.toLowerCase()];
+    const getValue = function(value){ //get coulmn type, and apply correct format.       
+    let formatRule = showorder ? formatDict[column.name.toLowerCase()] : formatDict[row[0].toLowerCase()] ;
     // console.log({'formatRule':formatRule, 'name': column.name});
     // TODO:
     // add solution for when swiching order. 
