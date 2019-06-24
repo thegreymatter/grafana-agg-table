@@ -52,7 +52,7 @@ export class StatusTable extends Component<Props> {
     fixedHeader: true,
     fixedColumns: 0,
     rotate: false,
-    minColumnWidth: 150,
+    minColumnWidth: 10,
   };
 
   constructor(props: Props) {
@@ -87,6 +87,7 @@ export class StatusTable extends Component<Props> {
 
   }
 
+  
  
 
   /** Converts the grid coordinates to SeriesData coordinates */

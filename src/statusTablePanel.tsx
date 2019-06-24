@@ -15,17 +15,7 @@ export class StatusTablePanel extends Component<dProps> {
       super(props);
     }
   
-    getTrend(element:any){
-        if(!element.trend)
-        return (<span>-</span>);
-        else if (element.trend>0.1)
-        return (<span>▲</span>);
-        else if (element.trend<-0.1)
-        return (<span>▼</span>);
-        else
-        return (<span>▶</span>);
 
-    }
     render() {
       const { data,options } = this.props;    
       console.log(data);
