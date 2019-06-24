@@ -1,7 +1,6 @@
 import _ from "underscore";
 
-export function transform(rows: Array<Array<any>>, fields:Array<any>, options) {   
-     console.log(options);            
+export function transform(rows: Array<Array<any>>, fields:Array<any>, options) {          
      let xfield_location = options.columns;
      let yfield_location = options.rows;
      let valfield_location = options.value;

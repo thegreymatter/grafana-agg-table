@@ -3568,7 +3568,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}\n\n\n.section.atb-settings {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: flex-start;\n}\n\n.section.atb-settings .section-heading {\n    font-size: 20px;\n    color: #fff;\n    text-transform: capitalize;\n    flex: 1 100%;\n}\n\n.section.atb-settings .gf-form-switch-container-react {\n    margin: 5px\n    \n}\n\n.section.atb-settings .panel-options-group {\n    margin: 5px\n}", "", {"version":3,"sources":["/Users/omri.fima/dev/grafana/grafana-agg-table/src/style/module.css"],"names":[],"mappings":"AAAA;IACI,YAAY;CACf;;AAED;IACI,iBAAiB;IACjB,YAAY;IACZ,gBAAgB;CACnB;;AAED;IACI,oBAAoB;IACpB,YAAY;IACZ,gBAAgB;CACnB;;AAED;CACC,wBAAwB;CACxB;;AAED;CACC,sBAAsB;CACtB;AACD;CACC,cAAc;CACd,YAAY;CACZ,gBAAgB;CAChB,wBAAwB;CACxB,oBAAoB;CACpB;;;AAGD;IACI,cAAc;IACd,gBAAgB;IAChB,4BAA4B;CAC/B;;AAED;IACI,gBAAgB;IAChB,YAAY;IACZ,2BAA2B;IAC3B,aAAa;CAChB;;AAED;IACI,WAAW;;CAEd;;AAED;IACI,WAAW;CACd","file":"module.css","sourcesContent":["table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}\n\n\n.section.atb-settings {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: flex-start;\n}\n\n.section.atb-settings .section-heading {\n    font-size: 20px;\n    color: #fff;\n    text-transform: capitalize;\n    flex: 1 100%;\n}\n\n.section.atb-settings .gf-form-switch-container-react {\n    margin: 5px\n    \n}\n\n.section.atb-settings .panel-options-group {\n    margin: 5px\n}"],"sourceRoot":""}]);
+exports.push([module.i, "table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}\n\n\n.section.atb-settings {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: flex-start;\n}\n\n.section.atb-settings .section-heading {\n    font-size: 20px;\n    color: #fff;\n    text-transform: capitalize;\n    flex: 1 100%;\n}\n\n.section.atb-settings .gf-form-switch-container-react {\n    margin: 5px\n    \n}\n\n.section.atb-settings .panel-options-group {\n    margin: 5px\n}", "", {"version":3,"sources":["/Users/niv.benavi/development/ni-heartbeat-project/grafana-agg-table/src/style/module.css"],"names":[],"mappings":"AAAA;IACI,YAAY;CACf;;AAED;IACI,iBAAiB;IACjB,YAAY;IACZ,gBAAgB;CACnB;;AAED;IACI,oBAAoB;IACpB,YAAY;IACZ,gBAAgB;CACnB;;AAED;CACC,wBAAwB;CACxB;;AAED;CACC,sBAAsB;CACtB;AACD;CACC,cAAc;CACd,YAAY;CACZ,gBAAgB;CAChB,wBAAwB;CACxB,oBAAoB;CACpB;;;AAGD;IACI,cAAc;IACd,gBAAgB;IAChB,4BAA4B;CAC/B;;AAED;IACI,gBAAgB;IAChB,YAAY;IACZ,2BAA2B;IAC3B,aAAa;CAChB;;AAED;IACI,WAAW;;CAEd;;AAED;IACI,WAAW;CACd","file":"module.css","sourcesContent":["table.table-wrapper {\n    width: 100%;\n}\n\nthead.table-header-wrapper {\n    background: #eee;\n    color: #000;\n    font-size: 18px;\n}\n\ntbody.table-body-wrapper {\n    background: #cdcccc;\n    color: #000;\n    font-size: 14px;\n}\n\n.green {\n\tbackground-color: green;\n}\n\n.red {\n\tbackground-color: red;\n}\n.no-data{\n\tdisplay: flex;\n\tflex:1 100%;\n\tfont-size: 40px;\n\tjustify-content: center;\n\talign-items: center;\n}\n\n\n.section.atb-settings {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: flex-start;\n}\n\n.section.atb-settings .section-heading {\n    font-size: 20px;\n    color: #fff;\n    text-transform: capitalize;\n    flex: 1 100%;\n}\n\n.section.atb-settings .gf-form-switch-container-react {\n    margin: 5px\n    \n}\n\n.section.atb-settings .panel-options-group {\n    margin: 5px\n}"],"sourceRoot":""}]);
 
 // exports
 
@@ -19386,7 +19386,6 @@ var _underscore2 = _interopRequireDefault(_underscore);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function transform(rows, fields, options) {
-  console.log(options);
   var xfield_location = options.columns;
   var yfield_location = options.rows;
   var valfield_location = options.value;
@@ -19509,7 +19508,8 @@ var __assign = undefined && undefined.__assign || function () {
 var statusCellBuilder = exports.statusCellBuilder = function statusCellBuilder(cell) {
   var props = cell.props,
       value = cell.value,
-      className = cell.className;
+      className = cell.className,
+      column = cell.column;
   var style = props.style;
 
   var getTrend = function getTrend(element) {
@@ -19524,12 +19524,21 @@ var statusCellBuilder = exports.statusCellBuilder = function statusCellBuilder(c
     if (element.color === undefined || element.color === null) return "";else if (element.color > 0.7) return "#d2f8d2";else if (element.color < 0.4) return "pink";else return "#FFEDCC";
   };
 
+  var formatDict = {
+    fid: '0%',
+    fcp: '0%',
+    commission: '$0.00',
+    stability: '0%',
+    traffic: '0 a'
+  };
+
   var getValue = function getValue(value) {
-    console.log(props);
+    var formatRule = formatDict[column.name.toLowerCase()]; // console.log({'formatRule':formatRule, 'name': column.name});
+    // TODO:
+    // add solution for when swiching order. 
+
     if (value.value === undefined) return "n/a";
-    if (props.format) return (0, _numeral2.default)(value.value).format(props.format);
-    if (value.value < 1) return (0, _numeral2.default)(value.value).format('0.[00]');
-    return (0, _numeral2.default)(value.value).format('0,0');
+    return (0, _numeral2.default)(value.value).format(formatRule);
   };
 
   return _react2.default.createElement("div", {
@@ -19687,6 +19696,7 @@ function (_super) {
 
       return _react2.default.createElement("div", {
         className: "gf-table-header",
+        "data-attr": col.name,
         style: style,
         onClick: function onClick() {
           return _this.onCellClick(rowIndex, columnIndex);
@@ -20040,17 +20050,12 @@ function (_super) {
     return _super.call(this, props) || this;
   }
 
-  StatusTablePanel.prototype.getTrend = function (element) {
-    if (!element.trend) return _react2.default.createElement("span", null, "-");else if (element.trend > 0.1) return _react2.default.createElement("span", null, "\u25B2");else if (element.trend < -0.1) return _react2.default.createElement("span", null, "\u25BC");else return _react2.default.createElement("span", null, "\u25B6");
-  };
-
   StatusTablePanel.prototype.render = function () {
     var _this = this;
 
     var _a = this.props,
         data = _a.data,
         options = _a.options;
-    console.log(data);
 
     if (data['series'][0]) {
       var _b = (0, _aggregationTransformer.transform)(data['series'][0].rows, data['series'][0].fields, this.props.options),

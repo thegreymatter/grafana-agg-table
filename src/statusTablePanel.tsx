@@ -17,8 +17,7 @@ export class StatusTablePanel extends Component<dProps> {
   
 
     render() {
-      const { data,options } = this.props;    
-      console.log(data);
+      const { data,options } = this.props;      
       if (data['series'][0]){
      const {rows,fields} = transform(data['series'][0].rows,data['series'][0].fields, this.props.options)    
   

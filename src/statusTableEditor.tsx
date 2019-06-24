@@ -29,7 +29,7 @@ export class statusTableEditor extends PureComponent < PanelEditorProps < Option
             showOrder: !this.props.options.showOrder,
             columns: (this.props.options.columns=='1') ?'2' : '1',
             rows: (this.props.options.rows=='1') ?'2' : '1'
-        });        
+        });
     };   
 
     onThresholdsChanged = (thresholds: Threshold[]) => {

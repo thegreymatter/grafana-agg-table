@@ -124,7 +124,7 @@ export class StatusTable extends Component<Props> {
     }
 
     return (
-      <div className="gf-table-header" style={style} onClick={() => this.onCellClick(rowIndex, columnIndex)}>
+      <div className="gf-table-header" data-attr={col.name} style={style} onClick={() => this.onCellClick(rowIndex, columnIndex)}>
         {col.name}
       </div>
     );
