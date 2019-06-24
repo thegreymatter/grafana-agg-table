@@ -3,10 +3,9 @@ import React from "react";
 import numeral from "numeral";
 
 /** Simplest cell that just spits out the value */
-export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOptions) => {
-    const { props, value, className } = cell;
-    const { style } = props;
-  
+export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOptions)  => {
+    const { props, value, className, column, showorder, row } = cell;
+    const { style } = props;     
     const getTrend =function(element:any){
       if(element.trend===undefined||element.trend===null)
          return (<span></span>);
@@ -41,18 +40,21 @@ export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOption
       return "#FFEDCC";
 
   }
-
-    const getValue = function(value){
-      console.log(props)
+    const formatDict = {
+      fid:'0%',
+      fcp:'0%',
+      commission:'$0.00',
+      stability:'0%',
+      traffic:'0 a',
+    }
+    const getValue = function(value){ //get coulmn type, and apply correct format.       
+    let formatRule = showorder ? formatDict[column.name.toLowerCase()] : formatDict[row[0].toLowerCase()] ;
+    // console.log({'formatRule':formatRule, 'name': column.name});
+    // TODO:
+    // add solution for when swiching order. 
       if(value.value===undefined)
-        return "n/a";
-      if(props.format)
-        return numeral(value.value).format(props.format);
-      if(value.value<1)
-        return numeral(value.value).format('0.[00]');
-
-      return numeral(value.value).format('0,0');
-
+        return "n/a";      
+      return numeral(value.value).format(formatRule);
     }
 
     return (
@@ -67,6 +69,7 @@ export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOption
   
 
     return (
+
       <div style={{fontWeight:"bold",padding:"10px"}} className={'gf-table-cell ' + className}>
       {value||"n\\a"}
       </div>

@@ -28,7 +28,7 @@ export interface Props extends Themeable {
   fixedColumns: number;
   rotate: boolean;
   styles: ColumnStyle[];
-
+  showorder: boolean;
   replaceVariables: InterpolateFunction;
   width: number;
   height: number;
@@ -114,7 +114,7 @@ export class StatusTable extends Component<Props> {
     const { data } = this.props;
     const { columnIndex, rowIndex, style } = cell.props;
     const { column } = this.getCellRef(rowIndex, columnIndex);
-
+    
     let col = data.fields[column];
 
     if (!col) {
@@ -139,8 +139,8 @@ export class StatusTable extends Component<Props> {
   cellRenderer = (props: GridCellProps): React.ReactNode => {
     const { rowIndex, columnIndex, key, parent } = props;
     const { row, column } = this.getCellRef(rowIndex, columnIndex);
-    const { data } = this.props;
-
+    const { data, showOrder } = this.props;
+    
     const isHeader = row < 0;
     const rowData = isHeader ? data.fields : data.rows[row];
     const value = rowData ? rowData[column] : '';
@@ -151,8 +151,8 @@ export class StatusTable extends Component<Props> {
         {builder({
           value,
           row: rowData,
-          column: data.fields[column],
-        //  table: this,
+          column: data.fields[column],  
+          showorder: showOrder,        
           props,
         })}
       </CellMeasurer>
@@ -164,6 +164,7 @@ export class StatusTable extends Component<Props> {
   };
 
   render() {
+
     const { showHeader, fixedHeader, fixedColumns, rotate, width, height } = this.props;
     const { data } = this.props;
     if (!data || !data.fields || !data.fields.length) {
@@ -176,8 +177,7 @@ export class StatusTable extends Component<Props> {
     let fixedColumnCount = Math.min(fixedColumns, columnCount);
     let fixedRowCount = showHeader && fixedHeader ? 1 : 0;
 
-
-    // Called after sort or the data changes
+    // Called after sort or the data changes    
     const scroll = this.scrollToTop ? 1 : -1;
     const scrollToRow = rotate ? -1 : scroll;
     const scrollToColumn = rotate ? scroll : -1;
@@ -205,7 +205,7 @@ export class StatusTable extends Component<Props> {
         cellRenderer={this.cellRenderer}
         rowHeight={this.measurer.rowHeight}
         width={width}
-        height={height}
+        height={height}        
         fixedColumnCount={fixedColumnCount}
         fixedRowCount={fixedRowCount}
         classNameTopLeftGrid="gf-table-fixed-column"
