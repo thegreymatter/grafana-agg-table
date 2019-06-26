@@ -19513,7 +19513,7 @@ var statusCellBuilder = exports.statusCellBuilder = function statusCellBuilder(c
   var style = props.style;
 
   var getTrend = function getTrend(element) {
-    if (element.trend === undefined || element.trend === null) return _react2.default.createElement("span", null);else if (element.trend > 0.1) return _react2.default.createElement("span", null, "\u25B2");else if (element.trend < -0.1) return _react2.default.createElement("span", null, "\u25BC");else return _react2.default.createElement("span", null, "\u25B6");
+    if (element.trend === undefined || element.trend === null) return _react2.default.createElement("span", null);else if (element.trend > 0.03) return _react2.default.createElement("span", null, "\u25B2\t (", (0, _numeral2.default)(element.trend).format('+0%'), ")");else if (element.trend < -0.03) return _react2.default.createElement("span", null, "\u25BC (", (0, _numeral2.default)(element.trend).format('+0%'), ")");else return _react2.default.createElement("span", null, "\u25B6 (", (0, _numeral2.default)(element.trend).format('+0%'), ")");
   };
 
   var getColor = function getColor(element) {
@@ -20039,10 +20039,6 @@ function (_super) {
   function StatusTablePanel(props) {
     return _super.call(this, props) || this;
   }
-
-  StatusTablePanel.prototype.getTrend = function (element) {
-    if (!element.trend) return _react2.default.createElement("span", null, "-");else if (element.trend > 0.1) return _react2.default.createElement("span", null, "\u25B2");else if (element.trend < -0.1) return _react2.default.createElement("span", null, "\u25BC");else return _react2.default.createElement("span", null, "\u25B6");
-  };
 
   StatusTablePanel.prototype.render = function () {
     var _this = this;

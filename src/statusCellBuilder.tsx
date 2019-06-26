@@ -10,12 +10,12 @@ export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOption
     const getTrend =function(element:any){
       if(element.trend===undefined||element.trend===null)
          return (<span></span>);
-        else if (element.trend>0.1)
-        return (<span>▲</span>);
-        else if (element.trend<-0.1)
-        return (<span>▼</span>);
+        else if (element.trend>0.03)
+        return (<span>▲	 ({ numeral(element.trend).format('+0%')})</span>);
+        else if (element.trend<-0.03)
+        return (<span>▼ ({ numeral(element.trend).format('+0%')})</span>);
         else
-        return (<span>▶</span>);
+        return (<span>▶ ({ numeral(element.trend).format('+0%')})</span>);
 
     }
     const getColor =function(element:any){
