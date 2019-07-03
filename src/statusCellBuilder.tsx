@@ -8,18 +8,18 @@ export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOption
     const { style } = props;
   
     const getTrend =function(element:any){
-      if(element.trend===undefined||element.trend===null)
-         return (<span></span>);
+      if( element===undefined||element==null||element.trend===undefined||element.trend===null)
+         return (<span style={{color:'black'}}></span>);
         else if (element.trend>0.03)
-        return (<span>▲	 ({ numeral(element.trend).format('+0%')})</span>);
+        return (<span style={{color:'black'}}>▲	 ({ numeral(element.trend).format('+0%')})</span>);
         else if (element.trend<-0.03)
-        return (<span>▼ ({ numeral(element.trend).format('+0%')})</span>);
+        return (<span style={{color:'black'}}>▼ ({ numeral(element.trend).format('+0%')})</span>);
         else
-        return (<span>▶ ({ numeral(element.trend).format('+0%')})</span>);
+        return (<span style={{color:'black'}}>▶ ({ numeral(element.trend).format('+0%')})</span>);
 
     }
     const getColor =function(element:any){
-      if(element.color===undefined||element.color===null)
+      if(element == null||element.color===undefined||element.color===null)
         return "black";
         else if (element.color>0.7)
         return "green";
@@ -31,7 +31,7 @@ export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOption
     }
 
     const getBgColor =function(element:any){
-      if(element.color===undefined||element.color===null)
+      if(element == null ||element.color===undefined||element.color===null)
       return "";
       else if (element.color>0.7)
       return "#d2f8d2";
@@ -43,9 +43,14 @@ export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOption
   }
 
     const getValue = function(value){
-      console.log(props)
-      if(value.value===undefined)
-        return "n/a";
+      let row = cell.row[0];
+      let col = cell.column.name;
+      if(value===undefined||value==null||value.value===undefined)
+      return "n/a";
+      if(row=="Commission"||col=="Commission")
+        return numeral(value.value).format('$0,0');
+      if(row=="CTR"||row=="FID"||row=="FCP"||row=="Stability"||col=="CTR"||col=="FID"||col=="FCP"||col=="Stability")
+        return numeral(value.value).format('0\\%');
       if(props.format)
         return numeral(value.value).format(props.format);
       if(value.value<1)
@@ -63,12 +68,12 @@ export const statusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOption
   };
 
   export const rowCellBuilder: TableCellBuilder = (cell: TableCellBuilderOptions) => {
-    const { value, className } = cell;
-  
+    const { props,value, className } = cell;
+    const { style } = props;
 
     return (
-      <div style={{fontWeight:"bold",padding:"10px"}} className={'gf-table-cell ' + className}>
-      {value||"n\\a"}
+      <div style={{...style,fontWeight:"bold",padding:"10px"}} className={'gf-table-cell ' + className}>
+      <span>{value||"n\\a"}</span>
       </div>
     );
   };

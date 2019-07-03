@@ -20,7 +20,7 @@ export class StatusTablePanel extends Component<dProps> {
       const { data,options } = this.props;    
       console.log(data);
       if (data['series'][0]){
-     const {rows,fields} = transform(data['series'][0].rows,data['series'][0].fields, this.props.options)    
+     const {rows,fields} =  transform(data['series'][0].rows,data['series'][0].fields, this.props.options)    
   
       return (
       <ThemeContext.Consumer>

@@ -172,7 +172,7 @@ export class StatusTable extends Component<Props> {
 
     let columnCount = data.fields.length;
     let rowCount = data.rows.length + (showHeader ? 1 : 0);
-
+console.log(rowCount)
     let fixedColumnCount = Math.min(fixedColumns, columnCount);
     let fixedRowCount = showHeader && fixedHeader ? 1 : 0;
 
